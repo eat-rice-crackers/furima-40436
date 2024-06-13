@@ -29,7 +29,7 @@
 | shipping_fee_burden_id | integer    | null: false                    |
 | prefecture_id          | integer    | null: false                    |
 | shipping_day_id        | integer    | null: false                    |
-| price                  | string     | null: false                    |
+| price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
 
 ### Association
