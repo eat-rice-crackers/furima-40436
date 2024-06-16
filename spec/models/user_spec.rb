@@ -25,8 +25,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Password can't be blank"
     end
     it 'passwordとpassword_confirmationが不一致では登録できない' do
-      @user.password = '123456'
-      @user.password_confirmation = '1234567'
+      @user = FactoryBot.build(:user, password: "password", password_confirmation: "different")
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
@@ -55,22 +54,22 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
     end
     it '名字(全角)は漢字・ひらがな・カタカナ以外の文字を含むと登録できない' do
-      @user.last_name = 'てすと'
+      @user.last_name = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name is invalid. Input full-width characters.')
     end
     it '名前（全角）は漢字・ひらがな・カタカナ以外の文字を含むと登録できない' do
-      @user.first_name = 'てすと'
+      @user.first_name = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include('First name is invalid. Input full-width characters.')
     end
     it '名字カナは全角（カタカナ）以外の文字だと登録できない' do
-      @user.last_name_kana = 'テスト'
+      @user.last_name_kana = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name kana is invalid. Input full-width katakana characters.')
     end
     it '名前カナは全角（カタカナ）以外の文字だと登録できない' do
-      @user.first_name_kana = 'テスト'
+      @user.first_name_kana = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include('First name kana is invalid. Input full-width katakana characters.')
     end
