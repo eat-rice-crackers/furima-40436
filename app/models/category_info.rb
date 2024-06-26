@@ -12,4 +12,8 @@ class CategoryInfo < ActiveHash::Base
     { id: 9, name: 'ハンドメイド' },
     { id: 10, name: 'その他' }
   ]
+
+  def items
+    Item.where(category_info_id: id)
+  end
 end

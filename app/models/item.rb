@@ -1,5 +1,11 @@
 class Item < ApplicationRecord
   belongs_to :user
+  belongs_to_active_hash :category_info
+  belongs_to_active_hash :items_condition
+  belongs_to_active_hash :shipping_fee_burden
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :shipping_day
+
   has_one_attached :image
 
   validates :items_name, presence: true, length: { maximum: 40 }

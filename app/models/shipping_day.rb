@@ -5,4 +5,8 @@ class ShippingDay < ActiveHash::Base
     { id: 2, name: '2～3日で発送' },
     { id: 3, name: '4～7日で発送' }
   ]
+
+  def items
+    Item.where(shipping_day_id: id)
+  end
 end
