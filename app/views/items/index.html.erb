@@ -127,20 +127,16 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <% @items.each do |item| %>
       <li class='list'>
         <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag url_for(item.image.variant(resize_to_limit:[295,295])), class:"item-image" if item.image.attached? %>
-
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <%# //商品が売れていればsold outを表示しましょう %>
-
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -157,10 +153,6 @@
         <% end %>
       </li>
        <% end %>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
       <% if @items.empty? %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -202,8 +194,7 @@
           </li>
         <% end %>
       <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+     
     </ul>
   </div>
   <%# /商品一覧 %>
