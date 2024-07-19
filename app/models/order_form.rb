@@ -10,7 +10,6 @@ class OrderForm
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "input only number" }
     validates :user_id
     validates :item_id
-    # validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 1000000, message: 'is invalid'}
   end
 
   def save
