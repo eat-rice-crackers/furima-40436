@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :redirect_if_sold_out_or_seller, only: [:index, :create]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
