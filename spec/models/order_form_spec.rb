@@ -45,6 +45,9 @@ RSpec.describe OrderForm, type: :model do
         @order_form.phone_number = '09012345678'
         expect(@order_form).to be_valid
       end
+      it 'tokenがあれば保存ができること' do
+        expect(@order_form).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -56,7 +59,7 @@ RSpec.describe OrderForm, type: :model do
       it 'postal_codeが「3桁ハイフン4桁」の半角文字列でないと保存できないこと' do
         @order_form.postal_code = '1234567'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_form.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'prefectureを選択していないと保存できないこと' do
         @order_form.prefecture_id = 0
@@ -81,7 +84,12 @@ RSpec.describe OrderForm, type: :model do
       it 'phone_numberが10桁以上11桁以内の半角数値でなければ保存できないこと' do
         @order_form.phone_number = '090-1234-5678'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Phone number input only number"
+        expect(@order_form.errors.full_messages).to include 'Phone number input only number'
+      end
+      it 'tokenが空では登録できないこと' do
+        @order_form.token = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
