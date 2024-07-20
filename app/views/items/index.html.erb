@@ -132,11 +132,11 @@
         <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag url_for(item.image.variant(resize_to_limit:[295,295])), class:"item-image" if item.image.attached? %>
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <% if item.order.present? %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -149,10 +149,9 @@
               <span class='star-count'>0</span>
             </div>
           </div>
-        </div>
         <% end %>
       </li>
-       <% end %>
+      <% end %>
       <% if @items.empty? %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -171,30 +170,7 @@
         </div>
         <% end %>
       </li>
-       <% else %>
-        <% @items.each do |item| %>
-          <li class="list">
-            <%= link_to item_path(item) do %>
-              <div class='item-img-content'>
-                <%= image_tag url_for(item.image.variant(resize_to_limit:[295,295])), class:"item-image" if item.image.attached? %>
-              </div>
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= item.items_name %>
-                <h3>
-                <div class = 'item-price' >
-                  <span><%= item.price %>円<br><%= item.shipping_fee_burden.name %></span>
-                  <div class='star-btn'>
-                    <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </li>
-        <% end %>
       <% end %>
-     
     </ul>
   </div>
   <%# /商品一覧 %>

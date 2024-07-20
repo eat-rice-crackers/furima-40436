@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_day
 
   has_one_attached :image
+  has_one :order
 
   validates :items_name, presence: true, length: { maximum: 40 }
   validates :items_description, presence: true, length: { maximum: 1000 }
@@ -23,5 +24,9 @@ class Item < ApplicationRecord
 
   def image_presence
     errors.add(:image, "can't be blank") unless image.attached?
+  end
+
+  def sold_out?
+    order.present?
   end
 end

@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
 
   has_many :items
+  has_many :orders
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates_format_of :password, with: PASSWORD_REGEX, message: 'Your password must contain both letters and numbers'
