@@ -1,15 +1,21 @@
-window.addEventListener('turbo:load', () => { 
-  const  priceInput = document.getElementById('item-price');
+window.addEventListener('turbo:load', setPriceCalculation);
+window.addEventListener('turbo:render', setPriceCalculation);
+
+function setPriceCalculation() {
+  const priceInput = document.getElementById('item-price');
+  const taxOutput = document.getElementById('add-tax-price');
+  const profitOutput = document.getElementById('profit');
   let tax;
 
-  priceInput.addEventListener("input", () => {
-    const inputValue = priceInput.value;
+  if (priceInput) {
+    priceInput.addEventListener("input", () => {
+      const inputValue = priceInput.value;
 
-    tax = Math.floor(inputValue * 0.1);
-    const addTaxDom = document.getElementById('add-tax-price');
-    addTaxDom.innerHTML = tax;
+      tax = Math.floor(inputValue * 0.1);
+      taxOutput.innerHTML = tax;
 
-    const profit = document.getElementById('profit');
-    profit.innerHTML = Math.floor(inputValue - tax);
-  })
-});
+      const profit = inputValue - tax;
+      profitOutput.innerHTML = Math.floor(profit);
+    });
+  }
+}
