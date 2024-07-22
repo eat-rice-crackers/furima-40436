@@ -10,10 +10,6 @@ development:
   host: localhost
   database: furima_40436_development
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 test:
   <<: *default
   adapter: mysql2
@@ -22,17 +18,7 @@ test:
   host: localhost
   database: furima_40436_test
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 production:
   <<: *default
   adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
-<<<<<<< Updated upstream
-=======
-  database: furima_40436_production
-  username: furima_40436
-  password: <%= ENV["FURIMA_40436_DATABASE_PASSWORD"] %>
->>>>>>> Stashed changes

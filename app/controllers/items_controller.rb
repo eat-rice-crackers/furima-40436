@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-<<<<<<< Updated upstream
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
@@ -51,8 +50,5 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-=======
-  def index
->>>>>>> Stashed changes
   end
 end
